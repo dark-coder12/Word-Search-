@@ -151,7 +151,7 @@ char** ListOfWords(ifstream& fileName, int given_Row, int given_Col, int n_Of_Wo
 {
 	{
 		char grid[50][50], word_Buffer[100];                                   // buffer saves iterated words
-					                                               // grid is a 2D array of words
+										      // grid is a 2D array of words
 
 		int row_Num = 0;                                                       // row iterator (input file)
 
@@ -525,7 +525,7 @@ void InputWordsinGrid(char** Grid, char** Words, int row, int col, int n_Of_Word
 
 	bool(*functions[8]) (char**, char*, int, int, int, int) =                     //  saves functions to generate them randomly later on
 	{ HorizontalRight , DiagonalTopLtoR , VerticalUp , DiagonalTopRtoL , VerticalDown , DiagonalDownLtoR , HorizontalLeft , DiagonalDownRtoL };
-        
+
 	while (check < 1)
 	{
 		if (VerticalDown(Grid, Words[check], 0, 0, row, col) == true)
@@ -888,42 +888,42 @@ int main()
 				{
 					int n_Of_Words, row, col;
 
-					cout << "Specify the number of words in the word input file" << endl;
+					cout << endl << "Specify the number of words in the word input file" << endl << endl;
 
 					cin >> n_Of_Words;
 
-					cout << "Specify the number of rows you require for the grid" << endl;
+					cout << endl << "Specify the number of rows you require for the grid" << endl << endl;
 
 					cin >> row;
 
-					cout << "Specify the number of columns you require for the grid" << endl;
+					cout << endl << "Specify the number of columns you require for the grid" << endl << endl;
 
 					cin >> col;
 
-					cout << "Specify the file name to save the generated grid in " << endl;
+					cout << endl << "Specify the file name to save the generated grid in " << endl << endl;
 
 					cin >> output_File;
 
 					ofstream generate_Grid(output_File.c_str());
 
-					char** words = ListOfWords(input_Words, row, col, n_Of_Words, largestWord);                      // saves list of words from input file by user
+					char** words = ListOfWords(input_Words, row, col, n_Of_Words, largestWord);                // saves list of words from input file by user
 
 					if (GridFeasibility(largestWord, row, col) == true)
 					{
 
 						char** grid = DynamicGrid(grid, row, col);
 
-						Initialize(grid, row, col);                                                                  // initializes Grid with Blank Spaces
+						Initialize(grid, row, col);                                                          // initializes Grid with Blank Spaces
 
-						InputWordsinGrid(grid, words, row, col, n_Of_Words);                                         // inputs words in either of the 8 ways as mentioned above
+						InputWordsinGrid(grid, words, row, col, n_Of_Words);                                 // inputs words in either of the 8 ways as mentioned above
 
-						RandomGenerator(grid, row, col);                                                             // randomly fills in the rest of the spaces
+						RandomGenerator(grid, row, col);                                                     // randomly fills in the rest of the spaces
 
-						SaveGrid(generate_Grid, grid, row, col);                                                     // saves the generated grid in output.txt 
+						SaveGrid(generate_Grid, grid, row, col);                                             // saves the generated grid in output.txt 
 
 						Deallocate(grid, row);
 
-						Deallocate(words, n_Of_Words);                                                               // frees memory on heap
+						Deallocate(words, n_Of_Words);                                                       // frees memory on heap
 
 						cout << "                                               Success in Saving!                                                           " << endl << endl;
 						cout << "___________________________________________ Saved in " << output_File << " _________________________________________________" << endl << endl;
@@ -992,7 +992,7 @@ int main()
 
 							char** grid = nullptr, ** testCases = nullptr;
 
-							testCases = List_Of_TestCases(wordFile, rows, cols, test_Cases);                       // stores words to be searched in given grid
+							testCases = List_Of_TestCases(wordFile, rows, cols, test_Cases);              // stores words to be searched in given grid
 
 							DynamicGrid(grid, rows, cols);
 
@@ -1000,16 +1000,16 @@ int main()
 
 							for (int i = 0; i < test_Cases; i++)
 							{
-								FindWordsIn2DGrid(saveOutput2, grid, testCases[i], rows, cols);                   // iterates to find each word - saves cordinates in given file
+								FindWordsIn2DGrid(saveOutput2, grid, testCases[i], rows, cols);      // iterates to find each word - saves cordinates in given file
 							}
 
-							Deallocate(grid, rows);                                                              // freeing memory on heap
+							Deallocate(grid, rows);                                                      // freeing memory on heap
 
 							Deallocate(testCases, test_Cases);
 
 							saveOutput2.close();
 
-							ifstream showOutput(output_File2.c_str());                                           // opens output file to display it's content on console
+							ifstream showOutput(output_File2.c_str());                                  // opens output file to display it's content on console
 
 							char wordBuffer[100];
 
