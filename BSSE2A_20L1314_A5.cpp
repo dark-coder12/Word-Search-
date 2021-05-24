@@ -151,7 +151,7 @@ char** ListOfWords(ifstream& fileName, int given_Row, int given_Col, int n_Of_Wo
 {
 	{
 		char grid[50][50], word_Buffer[100];                                   // buffer saves iterated words
-										      // grid is a 2D array of words
+										       // grid is a 2D array of words
 
 		int row_Num = 0;                                                       // row iterator (input file)
 
@@ -906,24 +906,26 @@ int main()
 
 					ofstream generate_Grid(output_File.c_str());
 
-					char** words = ListOfWords(input_Words, row, col, n_Of_Words, largestWord);                // saves list of words from input file by user
+					row++, col++;                                                                                     // for more variation if all words are largest
+
+					char** words = ListOfWords(input_Words, row, col, n_Of_Words, largestWord);                      // saves list of words from input file by user
 
 					if (GridFeasibility(largestWord, row, col) == true)
 					{
 
 						char** grid = DynamicGrid(grid, row, col);
 
-						Initialize(grid, row, col);                                                          // initializes Grid with Blank Spaces
+						Initialize(grid, row, col);                                                                  // initializes Grid with Blank Spaces
 
-						InputWordsinGrid(grid, words, row, col, n_Of_Words);                                 // inputs words in either of the 8 ways as mentioned above
+						InputWordsinGrid(grid, words, row, col, n_Of_Words);                                         // inputs words in either of the 8 ways as mentioned above
 
-						RandomGenerator(grid, row, col);                                                     // randomly fills in the rest of the spaces
+						RandomGenerator(grid, row, col);                                                             // randomly fills in the rest of the spaces
 
-						SaveGrid(generate_Grid, grid, row, col);                                             // saves the generated grid in output.txt 
+						SaveGrid(generate_Grid, grid, row, col);                                                     // saves the generated grid in output.txt 
 
 						Deallocate(grid, row);
 
-						Deallocate(words, n_Of_Words);                                                       // frees memory on heap
+						Deallocate(words, n_Of_Words);                                                               // frees memory on heap
 
 						cout << "                                               Success in Saving!                                                           " << endl << endl;
 						cout << "___________________________________________ Saved in " << output_File << " _________________________________________________" << endl << endl;
@@ -992,7 +994,7 @@ int main()
 
 							char** grid = nullptr, ** testCases = nullptr;
 
-							testCases = List_Of_TestCases(wordFile, rows, cols, test_Cases);              // stores words to be searched in given grid
+							testCases = List_Of_TestCases(wordFile, rows, cols, test_Cases);                       // stores words to be searched in given grid
 
 							DynamicGrid(grid, rows, cols);
 
@@ -1000,16 +1002,16 @@ int main()
 
 							for (int i = 0; i < test_Cases; i++)
 							{
-								FindWordsIn2DGrid(saveOutput2, grid, testCases[i], rows, cols);      // iterates to find each word - saves cordinates in given file
+								FindWordsIn2DGrid(saveOutput2, grid, testCases[i], rows, cols);              // iterates to find each word - saves cordinates in given file
 							}
 
-							Deallocate(grid, rows);                                                      // freeing memory on heap
+							Deallocate(grid, rows);                                                              // freeing memory on heap
 
 							Deallocate(testCases, test_Cases);
 
 							saveOutput2.close();
 
-							ifstream showOutput(output_File2.c_str());                                  // opens output file to display it's content on console
+							ifstream showOutput(output_File2.c_str());                                           // opens output file to display it's content on console
 
 							char wordBuffer[100];
 
